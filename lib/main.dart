@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wifi_info_plugin/wifi_info_plugin.dart';
+import 'wifi_info.dart';
 
 void main() {
   runApp(MyApp());
@@ -61,25 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Container(
-                      height: 50,
-                      color: Colors.red,
-                      child: const Center(child: Text("Test 1"))),
-                  Container(
-                      height: 50,
-                      color: Colors.blue,
-                      child: const Center(child: Text("Test 2"))),
-                  Container(
-                      height: 50,
-                      color: Colors.green,
-                      child: const Center(child: Text("Test 3"))),
-                ],
-              ),
-            )
+            WifiInfo(),
           ],
         ),
       ),
