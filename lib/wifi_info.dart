@@ -36,7 +36,13 @@ class _WifiInfoState extends State<WifiInfo> {
     String ipAddress =
         _wifiObject != null ? _wifiObject.ipAddress.toString() : "ip";
     return Center(
-      child: Text('Running on:' + ipAddress),
-    );
+        child: Column(
+      children: <Widget>[
+        Text('IP: ' + ipAddress),
+        Text('SSID: ' + _wifiObject.ssid.toString()),
+        Text('Signal Strength: ' + _wifiObject.signalStrength.toString()),
+        Text('Frequency: ' + _wifiObject.frequency.toString()),
+      ],
+    ));
   }
 }
