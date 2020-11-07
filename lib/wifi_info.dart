@@ -33,16 +33,24 @@ class _WifiInfoState extends State<WifiInfo> {
 
   @override
   Widget build(BuildContext context) {
-    String ipAddress =
-        _wifiObject != null ? _wifiObject.ipAddress.toString() : "ip";
-    return Center(
-        child: Column(
+    String ipAddress = _wifiObject != null
+        ? _wifiObject.ipAddress.toString()
+        : "IP not found.";
+    String ssid =
+        _wifiObject != null ? _wifiObject.ssid.toString() : "SSID not found.";
+    String sigStrength = _wifiObject != null
+        ? _wifiObject.signalStrength.toString()
+        : "Signal Strength not found.";
+    String freq = _wifiObject != null
+        ? _wifiObject.frequency.toString()
+        : "Frequency not found.";
+    return Column(
       children: <Widget>[
         Text('IP: ' + ipAddress),
-        Text('SSID: ' + _wifiObject.ssid.toString()),
-        Text('Signal Strength: ' + _wifiObject.signalStrength.toString()),
-        Text('Frequency: ' + _wifiObject.frequency.toString()),
+        Text('SSID: ' + ssid),
+        Text('Signal Strength: ' + sigStrength),
+        Text('Frequency: ' + freq),
       ],
-    ));
+    );
   }
 }
