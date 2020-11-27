@@ -32,12 +32,28 @@ class _WifiInfoState extends State<WifiInfo> {
   }
 
   void updateWifiObject() async {
-    _wifiObject = await WifiInfoPlugin.wifiDetails;
+    WifiInfoWrapper wifiObject;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      wifiObject = await WifiInfoPlugin.wifiDetails;
+    } on PlatformException {}
+    if (!mounted) return;
+
+    setState(() {
+      _wifiObject = wifiObject;
+    });
+    setState(() {});
+  }
+
+  void startTimer() {
+    Timer(new Duration(seconds: 1), () {
+      updateWifiObject();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    updateWifiObject();
+    startTimer();
     String ipAddress = _wifiObject != null
         ? _wifiObject.ipAddress.toString()
         : "IP not found.";
@@ -55,13 +71,16 @@ class _WifiInfoState extends State<WifiInfo> {
         Text('SSID: ' + ssid),
         Text('Signal Strength: ' + sigStrength),
         Text('Frequency: ' + freq),
-        ElevatedButton(
+        //Text('LinkSpeed: ' + _wifiObject.linkSpeed.toString()),
+        /* ElevatedButton(
           onPressed: () {
-            updateWifiObject();
-            setState(() {});
+            Timer(new Duration(seconds: 1), () {
+              updateWifiObject();
+            });
           },
           child: Text("Update"),
         )
+      */
       ],
     );
   }
