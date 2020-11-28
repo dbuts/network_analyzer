@@ -67,10 +67,14 @@ class _WifiInfoState extends State<WifiInfo> {
         : "Frequency not found.";
     return Column(
       children: <Widget>[
-        Text('IP: ' + ipAddress),
-        Text('SSID: ' + ssid),
-        Text('Signal Strength: ' + sigStrength),
-        Text('Frequency: ' + freq),
+        SizedBox(height: 100),
+        Text('IP: ' + ipAddress, style: TextStyle(fontSize: 24)),
+        Text('SSID: ' + ssid, style: TextStyle(fontSize: 24)),
+        Text('Signal Strength: ' + sigStrength, style: TextStyle(fontSize: 24)),
+        Text('Frequency: ' + freq, style: TextStyle(fontSize: 24)),
+        Expanded(child: Text("")),
+        Text("David Butler, 2020", style: TextStyle(color: Colors.grey)),
+        SizedBox(height: 20),
         //Text('LinkSpeed: ' + _wifiObject.linkSpeed.toString()),
         /* ElevatedButton(
           onPressed: () {
